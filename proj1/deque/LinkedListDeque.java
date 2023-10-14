@@ -38,7 +38,7 @@ public class LinkedListDeque<T>
         senfront.next = new ListNode(n,senfront,senlast);
     }
 */
-    public void addFisrt(T item)
+    public void addFirst(T item)
     {
         ListNode newNode = new ListNode(item,senfront,senfront.next);
         senfront.next.prev = newNode;
