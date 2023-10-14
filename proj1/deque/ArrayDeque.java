@@ -39,7 +39,7 @@ public class ArrayDeque<T>
      {
          while(size >= items.length)
              resize(size * 2);
-         front = (front -1) % items.length;
+         front = (front - 1 + items.length) % items.length;
          items[front] = i;
          size += 1;
      }
@@ -77,7 +77,7 @@ public class ArrayDeque<T>
              resize(size / 2);
          T del = items[last];
          items[last] = null;
-         front = (last - 1 ) % items.length;
+         front = (last - 1  + items.length) % items.length;
          size -= 1;
          return del;
 
