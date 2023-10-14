@@ -69,7 +69,7 @@ public class ArrayDeque<T>
          return del;
      }
 
-     public T removeLast(T i)
+     public T removeLast()
      {
          if(size == 0)
              return null;

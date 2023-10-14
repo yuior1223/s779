@@ -99,7 +99,7 @@ public class LinkedListDeque<T>
         if(senfront.next != senlast)
         {
             ListNode delNode = senlast.prev;
-            senfront.prev.prev.next = senlast;
+            senlast.prev.prev.next = senlast;
             senlast.prev = senlast.prev.prev;
             size -= 1;
             return delNode.item;
