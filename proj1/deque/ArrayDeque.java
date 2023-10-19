@@ -10,19 +10,22 @@ public class ArrayDeque<T>
      private int last;
 
      public ArrayDeque() {
-         items = (T []) new Object [100];
+         items = (T []) new Object [4];
          size = 0;
          front = 0;
+         last =0 ;
      }
 
      /** resize item with cap*/
      private void resize (int cap)
      {
          T[] a = (T []) new Object [cap];
-         if(last>front)
+         if(last >= front)
          {
              System.arraycopy(items, front, a, 0, size);
              items = a;
+             front = 0;
+             last = size - 1;
          }
 
          if(last < front)
@@ -33,26 +36,41 @@ public class ArrayDeque<T>
              front = 0;
              last = size - 1;
          }
+         items = a;
      }
 
      public void addFirst(T i)
      {
-         while(size >= items.length)
-             resize(size * 2);
-         front = (front - 1 + items.length) % items.length;
-         items[front] = i;
+         if(size == 0)
+         {
+             items[0] = i;
+
+         }
+         else
+         {
+             while (size >= items.length) resize(size * 2);
+             front = (front - 1 + items.length) % items.length;
+             items[front] = i;
+         }
          size += 1;
      }
 
      public void addLast(T i)
      {
-         while(size >= items.length)
+         if(size == 0)
          {
-             resize(size *2);
-         }
+             items[0] = i;
 
-         last = (last + 1) % items.length;
-         items[last] = i;
+         }
+         else
+         {
+             while (size >= items.length)
+             {
+                 resize(size * 2);
+             }
+             last = (last + 1) % items.length;
+             items[last] = i;
+         }
          size += 1;
      }
 
@@ -61,7 +79,7 @@ public class ArrayDeque<T>
          if(size == 0)
              return null;
          while(2 * size  <= items.length)
-             resize(size / 2);
+             resize(items.length / 2);
          T del = items[front];
          items[front] = null;
          front = (front + 1) % items.length;
@@ -74,10 +92,10 @@ public class ArrayDeque<T>
          if(size == 0)
              return null;
          while(2 * size  <= items.length)
-             resize(size / 2);
+             resize(items.length / 2);
          T del = items[last];
          items[last] = null;
-         front = (last - 1  + items.length) % items.length;
+         last = (last - 1  + items.length) % items.length;
          size -= 1;
          return del;
 
@@ -99,7 +117,7 @@ public class ArrayDeque<T>
      public void printDeque()
      {
          for(int i = 0;i<size;i++)
-             System.out.println(items[(front + i) % items.length] + " ");
+             System.out.print(items[(front + i) % items.length] + " ");
          System.out.println("\n");
      }
 

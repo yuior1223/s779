@@ -137,5 +137,26 @@ public class LinkedListDequeTest {
 
     }
 
+    @Test
+
+    public void ArrayDequeTest(){
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        for (int i = 0; i < 10; i++) {
+            lld1.addFirst(i);
+        }
+        for (int i = 10; i < 20; i++) {
+            lld1.addLast(i);
+        }
+        for (int i = 0; i < 10; i++) {
+            lld1.removeLast();
+        }
+        for (int i = 10; i < 20; i++) {
+            lld1.removeFirst();
+        }
+        lld1.removeFirst();
+
+        lld1.printDeque();
+
+    }
 
 }
