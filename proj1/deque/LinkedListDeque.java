@@ -1,6 +1,6 @@
 package deque;
 
-public class LinkedListDeque<T>
+public class LinkedListDeque<T> implements Deque<T>
 {
     public class ListNode
     {
@@ -38,6 +38,8 @@ public class LinkedListDeque<T>
         senfront.next = new ListNode(n,senfront,senlast);
     }
 */
+
+    @Override
     public void addFirst(T item)
     {
         ListNode newNode = new ListNode(item,senfront,senfront.next);
@@ -46,6 +48,7 @@ public class LinkedListDeque<T>
         size += 1;
     }
 
+    @Override
     public void addLast(T item)
     {
         ListNode newNode = new ListNode(item, senlast.prev,senlast);
@@ -54,6 +57,7 @@ public class LinkedListDeque<T>
         size += 1;
     }
 
+    @Override
     /**Prints the items in the deque from first to last, separated by a space. Once all the items have been printed, print out a new line.*/
     public boolean isEmpty()
     {
@@ -64,11 +68,14 @@ public class LinkedListDeque<T>
 
     }
 
+    @Override
     public int size()
     {
         return size;
 
     }
+
+    @Override
     public void printDeque()
     {
         ListNode p = senfront;
@@ -80,6 +87,7 @@ public class LinkedListDeque<T>
         System.out.println("\n");
     }
 
+    @Override
     public T removeFirst()
     {
         if(senfront.next != senlast)
@@ -94,6 +102,7 @@ public class LinkedListDeque<T>
             return null;
     }
 
+    @Override
     public T removeLast()
     {
         if(senfront.next != senlast)
@@ -108,6 +117,7 @@ public class LinkedListDeque<T>
             return null;
     }
 
+    @Override
     public T get(int index)
     {
         if (size <= index || size == 0)
@@ -119,6 +129,7 @@ public class LinkedListDeque<T>
         }
         return p.item;
     }
+
 
     private T getRecursive(ListNode N, int index)
     {

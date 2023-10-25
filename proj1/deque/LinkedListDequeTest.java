@@ -140,7 +140,7 @@ public class LinkedListDequeTest {
     @Test
 
     public void ArrayDequeTest(){
-        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        Deque<Integer> lld1 = new ArrayDeque<>();
         for (int i = 0; i < 10; i++) {
             lld1.addFirst(i);
         }
