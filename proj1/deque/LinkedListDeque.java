@@ -144,6 +144,56 @@ public class LinkedListDeque<T> implements Deque<T>
         return getRecursive(senfront.next,index);
     }
 
+    public Iterator<T> iterator()
+    {
+        return new LinkListDequeIterator();
+    }
+
+    @Override
+    public boolean equals(Object o )
+    {
+        if(o == null)
+            return false;
+        if(o.getClass() != this.getClass())
+            return false;
+        LinkedListDeque<T> other = (LinkedListDeque<T>) o;
+        if(other.size() != this.size())
+            return false;
+        for(int i = 0; i < size();i+=1)
+        {
+            if(other.get(i) == this.get(i))
+                return false;
+        }
+        return true;
+    }
 
 
+
+
+
+    private class LinkListDequeIterator implements Iterator<T>
+    {
+        private int wizpos;
+
+        public LinkListDequeIterator()
+        {
+            wizpos = 0;
+        }
+
+        @Override
+        public boolean hasNext()
+        {
+            return wizpos < size();
+        }
+
+        @Override
+        public T next()
+        {
+            T returnItem = get(wizpos);
+            wizpos += 1;
+            return returnItem;
+        }
+
+
+    }
 }

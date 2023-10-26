@@ -134,4 +134,51 @@ public class ArrayDeque<T> implements Deque<T>
          return items[(front + index) % items.length];
      }
 
+     public Iterator<T> iterator()
+     {
+         return new ArrayDequeIterator();
+
+     }
+
+
+    @Override
+    public boolean equals(Object o )
+    {
+        if(o == null)
+            return false;
+        if(o.getClass() != this.getClass())
+            return false;
+        ArrayDeque<T> other = (ArrayDeque<T>)  o;
+        if(other.size() != this.size())
+            return false;
+        for(int i = 0; i < size();i+=1)
+        {
+            if(other.get(i) == this.get(i))
+                return false;
+        }
+        return true;
+    }
+     private class ArrayDequeIterator implements Iterator<T>
+     {
+         private int wizpos;
+
+         public ArrayDequeIterator()
+         {
+             wizpos = 0;
+         }
+         @Override
+         public boolean hasNext()
+         {
+             return wizpos < size;
+         }
+
+         @Override
+         public T next()
+         {
+             T returnItem = get(wizpos);
+             wizpos += 1;
+             return returnItem;
+         }
+     }
+
 }
